@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
+import datetime
 from openerp import models, fields, api
 from openerp import tools
 
@@ -34,22 +34,45 @@ class LapKbMutasiCommon(models.AbstractModel):
             b.warehouse_id = %s AND
             b.djbc_kb_movement_type = '%s' AND
             b.djbc_kb_scrap %s AND
-            a.state = 'done' AND
+            a.state = 'done' 
         """ % (
             self.product_id.id,
             self.warehouse_id.id,
             movement_type,
             scrap and 'IS TRUE' or 'IS FALSE',
         )
+        tgl_now = datetime.datetime.now();
         if date_start:
             str_where += """
-            a.date >= '%s' AND
+            AND a.date >= '%s' AND
             a.date <= '%s'
             """ % (date_start, date_end)
         else:
             str_where += """
-            a.date < '%s'
+            AND a.date < '%s'
             """ % (date_end)
+        # str_where = """
+        # WHERE
+        #     a.product_id = %s AND
+        #     b.warehouse_id = %s AND
+        #     b.djbc_kb_movement_type = '%s' AND
+        #     b.djbc_kb_scrap %s AND
+        #     a.state = 'done' AND
+        # """ % (
+        #     self.product_id.id,
+        #     self.warehouse_id.id,
+        #     movement_type,
+        #     scrap and 'IS TRUE' or 'IS FALSE',
+        # )
+        # if date_start:
+        #     str_where += """
+        #     a.date >= '%s' AND
+        #     a.date <= '%s'
+        #     """ % (date_start, date_end)
+        # else:
+        #     str_where += """
+        #     a.date < '%s'
+        #     """ % (date_end)
         if adjustment:
             str_where += """
              AND (a.inventory_id != %s OR 
@@ -177,6 +200,12 @@ class LapKbMutasiCommon(models.AbstractModel):
         comodel_name="product.uom",
         readonly=True,
     )
+    #tambhaan hr
+    # tgl_stock_move = fields.Char(
+    #     string="Tanggal Penerimaan",
+    #     readonly=True,
+    # )
+    #end
     saldo_awal = fields.Float(
         string="Saldo Awal",
         readonly=True,
@@ -254,7 +283,7 @@ class LapKbMutasiCommon(models.AbstractModel):
         where_str = """
         """
         return where_str
-
+    # asli mas andit
     def _join(self):
         join_str = """
         CROSS JOIN stock_warehouse
@@ -262,6 +291,17 @@ class LapKbMutasiCommon(models.AbstractModel):
             ON a.product_tmpl_id = b.id
         """
         return join_str
+
+    #improv hariri
+    # def _join(self):
+    #     join_str = """
+    #     CROSS JOIN stock_warehouse
+    #     JOIN product_template AS b
+    #         ON a.product_tmpl_id = b.id
+    #     LEFT JOIN stock_move AS x
+    #         ON a.id = x.product_id        
+    #     """
+    #     return join_str
 
     def init(self, cr):
         tools.drop_view_if_exists(cr, self._table)

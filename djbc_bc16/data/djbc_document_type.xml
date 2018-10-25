@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<record id="djbc_document_type_bc16" model="l10n_id.djbc_document_type">
+    <field name="name">BC 1.6</field>
+    <field name="code">BC 1.6</field>
+</record>
+
+</data>
+</openerp>

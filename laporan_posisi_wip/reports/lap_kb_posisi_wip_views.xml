@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+<record id="djbc_lap_posisi_wip_common_view_tree" model="ir.ui.view">
+    <field name="name">l10n_id.djbc_kb_lap_mutasi_common Tree</field>
+    <field name="model">l10n_id.djbc_kb_lap_posisi_wip</field>
+    <field name="arch" type="xml">
+        <tree create="false" edit="false" delete="false"> 
+            <field name="tgl_penerimaan"/>      
+            <field name="kode_barang"/>            
+            <field name="nama_barang"/>            
+            <field name="jumlah"/>            
+            <field name="satuan"/>
+            <field name="warehouse_id"/>
+        </tree>
+    </field>
+</record>
+
+<!-- <record id="djbc_lap_pemasukan_view_search" model="ir.ui.view">
+    <field name="name">l10n_id.djbc_kb_lap_pemasukan Tree</field>
+    <field name="model">l10n_id.djbc_kb_lap_pemasukan</field>
+    <field name="arch" type="xml">
+        <search>
+            <field name="jenis_dokumen"/>
+            <field name="no_dokumen"/>
+            <field name="no_penerimaan"/>            
+            <field name="pengirim"/>            
+            <field name="kode_barang"/>            
+            <field name="nama_barang"/>            
+            <field name="warehouse_id"/>
+            <group string="Group By">
+                <filter name="grp_jenis_dokumen" string="Jenis Dokumen" context="{'group_by':'jenis_dokumen'}"/>
+                <filter name="grp_no_dokumen" string="No. Dokumen" context="{'group_by':'no_dokumen'}"/>
+                <filter name="grp_no_penerimaan" string="No. Penerimaan" context="{'group_by':'no_penerimaan'}"/>
+                <filter name="grp_pengirim" string="Pengirim" context="{'group_by':'pengirim'}"/>
+                <filter name="grp_warehouse_id" string="Warehouse" context="{'group_by':'warehouse_id'}"/>
+            </group>
+        </search>
+    </field>
+</record> -->
+
+<record id="djbc_kb_lap_posisi_wip_action" model="ir.actions.act_window">
+    <field name="name">Lap. Posisi WIP</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_id.djbc_kb_lap_posisi_wip</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="djbc_lap_posisi_wip_common_view_tree"/>
+    <!-- <field name="search_view_id" ref="djbc_lap_pemasukan_view_search"/> -->
+    <field name="target">current</field>
+</record>
+
+    </data>
+</openerp>

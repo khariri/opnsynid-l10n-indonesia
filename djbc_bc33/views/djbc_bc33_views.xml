@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+<record id="djbc_bc33_view_tree" model="ir.ui.view">
+    <field name="name">tree l10n_id.djbc_bc33</field>
+    <field name="model">l10n_id.djbc_bc33</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="date"/>            
+            <field name="type_id" invisible="context.get('hide_type', True)"/>                        
+        </tree>
+    </field>
+</record>
+
+<record id="djbc_bc33_view_form" model="ir.ui.view">
+    <field name="name">form l10n_id.djbc_bc33</field>
+    <field name="model">l10n_id.djbc_bc33</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group name="group_main_1" colspan="4" col="2">
+                    <field name="name"/>
+                    <field name="date"/>            
+                    <field name="type_id" widget="selection" invisible="context.get('hide_type', True)"/>                 
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="djbc_bc33_action" model="ir.actions.act_window">
+    <field name="name">BC 3.3</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_id.djbc_bc33</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="context" eval="{'hide_type':True, 'default_type_id':ref('djbc_document_type_bc33')}"/>
+</record>
+
+<menuitem
+    id="djbc_bc33_menu"
+    name="BC 3.3"
+    parent="l10n_id_djbc_app.djbc_custom_document_menu"
+    groups="l10n_id_djbc_app.group_djbc_user"
+    action="djbc_bc33_action"/>
+</data>
+</openerp>

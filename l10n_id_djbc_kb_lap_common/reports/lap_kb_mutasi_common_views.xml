@@ -9,6 +9,7 @@
     <field name="model">l10n_id.djbc_kb_lap_mutasi_common</field>
     <field name="arch" type="xml">
         <tree create="false" edit="false" delete="false">
+<!--             <field name="tgl_stock_move" /> -->
             <field name="kode_barang"/>
             <field name="product_id"/>
             <field name="uom_id"/>                        
