@@ -50,7 +50,7 @@ class LapKbMutasiCommon(models.AbstractModel):
         else:
             str_where += """
             AND a.date < '%s'
-            """ % (tgl_now)
+            """ % (date_end)
         # str_where = """
         # WHERE
         #     a.product_id = %s AND
